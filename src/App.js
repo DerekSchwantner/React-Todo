@@ -9,7 +9,7 @@ class App extends React.Component {
     this.state = {
       itemData: data,
       task: "",
-      id: Date.now(),
+      id: null,
       completed: false
     };
   }
@@ -23,7 +23,7 @@ class App extends React.Component {
     // immutability in react/javascript
     const newItem = {
       task: this.state.task,
-      id: this.state.id,
+      id: Date.now(),
       completed: this.state.completed
     };
     this.setState({
@@ -38,13 +38,40 @@ class App extends React.Component {
     });
   };
 
+  toggleItem = id => {
+    this.setState(prevState => {
+      return {
+        itemData: prevState.itemData.map(item => {
+          if (item.id === id) {
+            return {
+              ...item,
+
+              completed: !item.completed
+            };
+          } else {
+            return item;
+          }
+        })
+      };
+    });
+  };
+
+  removeItem = e => {
+    e.preventDefault();
+    console.log(e);
+    this.setState({
+      itemData: this.state.itemData.filter(task => task.completed !== true)
+    });
+  };
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList toDoItem={this.state} />
+        <TodoList toggleItem={this.toggleItem} toDoItem={this.state} />
         <TodoForm
           addMethod={this.addItem}
+          removeItem={this.removeItem}
           stateObject={this.state}
           handleChanges={this.handleChanges}
         />

@@ -9,7 +9,7 @@ class TodoList extends React.Component {
     return (
       <div className="class-list">
         {this.props.toDoItem.itemData.map(itemFromMap => (
-          <Todo itemOnProps={itemFromMap} />
+          <Todo toggleItem={this.props.toggleItem} itemOnProps={itemFromMap} />
         ))}
       </div>
     );
