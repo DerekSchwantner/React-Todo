@@ -2,6 +2,7 @@ import React from "react";
 import { data } from "./data";
 import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
+import "./components/TodoComponents/Todo.css";
 
 class App extends React.Component {
   constructor() {

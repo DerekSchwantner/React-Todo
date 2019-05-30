@@ -1,0 +1,7 @@
+.list-item {
+  color: black;
+}
+
+.list-item.completed {
+  text-decoration: line-through;
+}
